@@ -1,5 +1,3 @@
---populate the database with some data
-
 USE company_db
 
 INSERT INTO department (name) VALUES
