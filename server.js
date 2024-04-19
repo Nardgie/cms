@@ -5,13 +5,10 @@ const figlet = require('figlet');
 const table = require('console.table');
 
 
-const PORT = process.env.PORT || 3001;
-
 figlet.text('Employee Tracker', {
-    font: 'Standard',
-    horizontalLayout: 'default',
-    verticalLayout: 'default',
-    width: 80,
+    font: "3-d",
+    horizontalLayout: 'controlled smushing',
+    width: 65,
     whitespaceBreak: true
 }, function(err, data) {
     if (err) {
@@ -25,6 +22,7 @@ figlet.text('Employee Tracker', {
     console.log('Please select an option below');
 })
 
+// Main menu function to prompt user with options
 const mainMenu = () => {
     inquirer.prompt([{
         type: 'list',
@@ -61,6 +59,7 @@ const mainMenu = () => {
     })
 }
 
+// Function to view all departments
 const viewDepartments = () => {
     database.query('SELECT * FROM department', (err, res) => {
         if (err) throw err;
@@ -69,6 +68,7 @@ const viewDepartments = () => {
     })
 }
 
+// Function to view all roles
 const viewRoles = () => {
     database.query('SELECT * FROM role', (err, res) => {
         if (err) throw err;
@@ -77,6 +77,7 @@ const viewRoles = () => {
     })
 }
 
+// Function to view all employees
 const viewEmployees = () => {
     database.query('SELECT * FROM employee', (err, res) => {
         if (err) throw err;
@@ -85,6 +86,7 @@ const viewEmployees = () => {
     })
 }
 
+// Function to add a department to the database
 const addDepartment = () => {
     inquirer.prompt([{
         type: 'input',
@@ -99,6 +101,7 @@ const addDepartment = () => {
     })
 }
 
+// Function to add a role to the database
 const addRole = () => {
     inquirer.prompt([{
         type: 'input',
@@ -121,6 +124,7 @@ const addRole = () => {
     })
 }
 
+// Function to add an employee to the database  
 const addEmployee = () => {
     inquirer.prompt([{
         type: 'input',
@@ -147,10 +151,11 @@ const addEmployee = () => {
     })
 }
 
+// Function to update an employee role  
 const updateEmployeeRole = () => {
     inquirer.prompt([{
         type: 'input',
-        name: 'employeeId',
+        name: 'employee',
         message: 'Enter the ID of the employee you would like to update'
     }, {
         type: 'input',
@@ -165,6 +170,6 @@ const updateEmployeeRole = () => {
     })
 }
 
+// Don't forget to call the mainMenu function to start the application
 mainMenu();
 
-// app.listen(PORT, () => {
